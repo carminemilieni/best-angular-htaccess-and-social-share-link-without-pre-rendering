@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+
+AddDefaultCharset UTF-8
+RewriteEngine On
+
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
+RewriteRule ^blog/post/(.*)$ /socialshare.php?slug=$1 [NC,L]
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+RewriteRule ^ - [L]
+RewriteRule ^ /
+
+</IfModule>
